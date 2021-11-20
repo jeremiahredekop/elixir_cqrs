@@ -1,16 +1,34 @@
 defmodule OpenBankAccount do
-  defstruct [:account_number, :initial_balance]
+  use TypedStruct
+
+  typedstruct enforce: true do
+    field :account_number, non_neg_integer()
+    field :initial_balance, non_neg_integer()
+  end
+
 end
 
 defmodule BankAccountOpened do
   @derive Jason.Encoder
-  defstruct [:account_number, :initial_balance]
+  use TypedStruct
+
+  typedstruct enforce: true do
+    field :account_number, non_neg_integer()
+    field :initial_balance, non_neg_integer()
+  end
 end
 
 defmodule BankAccount do
-  defstruct [:account_number, :balance]
+  use TypedStruct
+
+  typedstruct enforce: true do
+    field :account_number, non_neg_integer()
+    field :initial_balance, integer()
+    field :balance, integer()
+  end
 
   # Public Api
+
 
   def execute(
         %BankAccount{account_number: nil},
